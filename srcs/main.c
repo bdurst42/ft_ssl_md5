@@ -6,13 +6,13 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 21:46:03 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 00:11:39 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 12:57:06 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-static char check_params(t_env *env, char **params, int nb_params)
+static char	check_params(t_env *env, char **params, int nb_params)
 {
 	if (get_command(env, params[1]))
 		return (1);
@@ -29,7 +29,7 @@ static void	clear_arg(t_arg *arg)
 	free(arg);
 }
 
-static void set_algo(t_algo *algo, char *name, char *(*func)(char*))
+static void	set_algo(t_algo *algo, char *name, char *(*func)(char*))
 {
 	algo->name = name;
 	algo->func = func;

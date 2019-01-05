@@ -6,12 +6,11 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 10:52:21 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/03 18:59:01 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 12:58:45 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include <stdio.h>
 
 static uint64_t g_k[80] = {0x428a2f98d728ae22, 0x7137449123ef65cd, 
 		0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc, 0x3956c25bf348b538, 
