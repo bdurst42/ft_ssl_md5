@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:27 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:06:29 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 16:26:42 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ char			get_command(t_env *env, char *command)
 	{
 		ft_putstr("ft_ssl: Error: '");
 		ft_putstr(command);
-		ft_putendl("' is an invalid command.");
+		ft_putendl("' is an invalid command.\n");
+		ft_putendl("Standard commands:\n");
+		ft_putendl("Message Digest commands:\n");
+		ft_putendl("md5\nsha224\nsha256\nsha384");
+		ft_putendl("sha512\nsha512/224\nsh512/256");
 		return (1);
 	}
 	return (0);

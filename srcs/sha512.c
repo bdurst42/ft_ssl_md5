@@ -6,11 +6,13 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:35:42 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:32:19 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 16:10:14 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+# include <stdio.h>
 
 static uint64_t g_k[80] = {0x428a2f98d728ae22, 0x7137449123ef65cd,
 	0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc, 0x3956c25bf348b538,
@@ -80,7 +82,10 @@ static void		modify_data(t_data_64 *data, uint8_t *pad_msg)
 	i = -1;
 	m = (uint64_t*)pad_msg;
 	while (++i < 16)
+	{
 		w[i] = m[i];
+		printf("%llx\n", w[i]);
+	}
 	--i;
 	while (++i < 80)
 	{
@@ -144,6 +149,8 @@ char			*sha512(char *message)
 	offset = 0;
 	while (offset < pad_msg_len)
 	{
+		for (int i = 0; i < 64; ++i)
+			printf("%x\n", *(pad_msg + offset + i));
 		modify_data(&data, pad_msg + offset);
 		offset += 128;
 	}
