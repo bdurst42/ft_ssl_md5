@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 00:29:51 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:14:27 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:17:15 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ char			*sha384(char *message)
 	uint64_t	pad_msg_len;
 	uint8_t		*pad_msg;
 	uint64_t	offset;
-	char 		*encode_message;
+	char		*encode_message;
 
 	data.h[0] = 0xcbbb9d5dc1059ed8;
 	data.h[1] = 0x629a292a367cd507;

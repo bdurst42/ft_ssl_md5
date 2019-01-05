@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:38 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:14:44 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:17:45 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		compute_data(t_data *data, uint32_t i)
 	else if (i < 48)
 	{
 		data->f = data->b ^ data->c ^ data->d;
-		data->g = (3 * i + 5) % 16;          
+		data->g = (3 * i + 5) % 16;
 	}
 	else
 	{
@@ -92,7 +92,7 @@ static void		modify_data(t_data *data, uint8_t *padding_message)
 				LEFTROTATE((data->a + data->f + g_k[i] + w[data->g]), g_r[i]);
 		data->a = data->tmp[0];
 		++i;
-	}		
+	}
 	data->h[0] += data->a;
 	data->h[1] += data->b;
 	data->h[2] += data->c;
@@ -129,9 +129,9 @@ char			*md5(char *message)
 {
 	t_data		data;
 	uint32_t	padding_message_len;
-	uint8_t		*padding_message;	
+	uint8_t		*padding_message;
 	uint32_t	offset;
-	char 		*encode_message;
+	char		*encode_message;
 
 	data.h[0] = 0x67452301;
 	data.h[1] = 0xEFCDAB89;
