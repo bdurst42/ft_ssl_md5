@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 18:47:37 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:58:36 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 12:59:57 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ uint8_t		*revert_msg(uint8_t *pad_msg, uint64_t len)
 	{
 		stock = pad_msg[i];
 		pad_msg[i++] = pad_msg[len];
-		pad_msg[len] = stock; 
+		pad_msg[len] = stock;
 	}
 	return (pad_msg);
 }

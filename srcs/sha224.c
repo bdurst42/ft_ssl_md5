@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:11:55 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:58:03 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:05:06 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
 {
 	uint32_t	padding_message_len;
 	uint64_t	message_len;
-	
+
 	message_len = ft_strlen(message);
 	padding_message_len = 64 * ((message_len + 1) / 64 + 1);
-	if ((message_len + 1) % 64 > 56 )
+	if ((message_len + 1) % 64 > 56)
 		padding_message_len += 64; 
 	if (!(*padding_message = ft_memalloc(padding_message_len)))
 		ft_exiterror("Malloc failed", 1);
@@ -66,7 +66,7 @@ static void 	modify_data(t_data *data, uint8_t *padding_message)
 {
 	uint32_t	w[64];
 	uint32_t	i;
-	
+
 	i = -1;
 	while (++i < 16)
 		w[i] = (padding_message[i * 4] << 24) + (padding_message[i * 4 + 1] \
@@ -94,7 +94,7 @@ static void		get_encode_message(char **str, t_data data)
 	int		k;
 	uint8_t	*p;
 	char	*base = "0123456789abcdef";
-	
+
 	if (!(*str = (char*)malloc(57)))
 		ft_exiterror("Malloc failure", 1);
 	(*str)[56] = 0;
@@ -138,5 +138,5 @@ char			*sha224(char *message)
 	}
 	free(padding_message);
 	get_encode_message(&encode_message, data);
-	return(encode_message);
+	return (encode_message);
 }

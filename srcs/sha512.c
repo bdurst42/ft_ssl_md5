@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:35:42 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:58:28 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:05:23 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,5 @@ char			*sha512(char *message)
 	}
 	free(pad_msg);
 	get_encode_message(&encode_message, data);
-	return(encode_message);
+	return (encode_message);
 }

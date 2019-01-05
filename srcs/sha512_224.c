@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 11:14:18 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:58:17 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:05:15 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static uint64_t	make_padding_message(uint8_t **pad_msg, char *message)
 {
 	uint64_t	pad_msg_len;
 	__uint128_t	msg_len;
-	
+
 	msg_len = ft_strlen(message);
 	pad_msg_len = 128 * ((msg_len + 1) / 128 + 1);
-	if ((msg_len + 1) % 128 > 112 )
+	if ((msg_len + 1) % 128 > 112)
 		pad_msg_len += 128; 
 	if (!(*pad_msg = ft_memalloc(pad_msg_len)))
 		ft_exiterror("Malloc failed", 1);
@@ -58,7 +58,7 @@ static uint64_t	make_padding_message(uint8_t **pad_msg, char *message)
 	return (pad_msg_len);
 }
 
-static void		compute_data(t_data_64 *data, uint64_t i, uint64_t	*w)
+static void		compute_data(t_data_64 *data, uint64_t i, uint64_t *w)
 {
 	data->s[1] = RROTATE64(data->e, 14) ^ RROTATE64(data->e, 18) \
 	^ RROTATE64(data->e, 41);
@@ -76,7 +76,7 @@ static void 	modify_data(t_data_64 *data, uint8_t *pad_msg)
 	uint64_t	w[80];
 	uint64_t	i;
 	uint64_t	*m;
-	
+
 	i = -1;
 	m = (uint64_t*)pad_msg;
 	while (++i < 16)
@@ -104,7 +104,7 @@ static void		get_encode_message(char **str, t_data_64 data)
 	int		k;
 	uint8_t	*p;
 	char	*base = "0123456789abcdef";
-	
+
 	if (!(*str = (char*)malloc(57)))
 		ft_exiterror("Malloc failure", 1);
 	(*str)[56] = 0;
@@ -149,5 +149,5 @@ char			*sha512_224(char *message)
 	}
 	free(pad_msg);
 	get_encode_message(&encode_message, data);
-	return(encode_message);
+	return (encode_message);
 }

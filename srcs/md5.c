@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:38 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:58:56 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:05:49 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
 {
 	uint32_t	padding_message_len;
 	uint64_t	message_len;
-	
+
 	message_len = ft_strlen(message);
 	padding_message_len = 64 * ((message_len + 1) / 64 + 1);
-	if ((message_len + 1) % 64 > 56 )
+	if ((message_len + 1) % 64 > 56)
 		padding_message_len += 64;
 	if (!(*padding_message = ft_memalloc(padding_message_len)))
 		ft_exiterror("Malloc failed", 1);
@@ -75,7 +75,7 @@ static void 	modify_data(t_data *data, uint8_t *padding_message)
 {
 	uint32_t	*w;
 	uint32_t	i;
-	
+
 	w = (uint32_t*)padding_message;
 	data->a = data->h[0];
 	data->b = data->h[1];
@@ -104,7 +104,7 @@ static void		get_encode_message(char **str, t_data data)
 	int		k;
 	uint8_t	*p;
 	char	*base = "0123456789abcdef";
-	
+
 	if (!(*str = (char*)malloc(33)))
 		ft_exiterror("Malloc failure", 1);
 	(*str)[32] = 0;
@@ -129,7 +129,7 @@ char			*md5(char *message)
 	uint8_t		*padding_message;	
 	uint32_t	offset;
 	char 		*encode_message;
-	
+
 	data.h[0] = 0x67452301;
 	data.h[1] = 0xEFCDAB89;
 	data.h[2] = 0x98BADCFE;
@@ -143,5 +143,5 @@ char			*md5(char *message)
 	}
 	free(padding_message);
 	get_encode_message(&encode_message, data);
-	return(encode_message);
+	return (encode_message);
 }
