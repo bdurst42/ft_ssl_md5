@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 10:52:21 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:08:13 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:10:13 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ static void		get_encode_message(char **str, t_data_64 data)
 	int		j;
 	int		k;
 	uint8_t	*p;
-	char	*base = "0123456789abcdef";
+	char	*base;
 
+	base = "0123456789abcdef";
 	if (!(*str = (char*)malloc(65)))
 		ft_exiterror("Malloc failure", 1);
 	(*str)[64] = 0;
