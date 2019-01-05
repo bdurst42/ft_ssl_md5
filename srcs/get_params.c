@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:27 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:56:41 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:06:29 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char			get_command(t_env *env, char *command)
 		if (!ft_strcmp(command, env->algos[i].name))
 		{
 			env->command = i;
-			break;
+			break ;
 		}
 	if (i == NUMBER_OF_ALGOS)
 	{

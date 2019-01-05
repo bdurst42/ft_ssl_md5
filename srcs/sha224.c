@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:11:55 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:05:06 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:07:48 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		compute_data(t_data *data, uint32_t i, uint32_t	*w)
 	fill_working_variables(data);
 }
 
-static void 	modify_data(t_data *data, uint8_t *padding_message)
+static void		modify_data(t_data *data, uint8_t *padding_message)
 {
 	uint32_t	w[64];
 	uint32_t	i;

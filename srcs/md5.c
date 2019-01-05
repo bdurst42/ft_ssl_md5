@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:38 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:05:49 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:08:38 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		compute_data(t_data *data, uint32_t i)
 	}
 }
 
-static void 	modify_data(t_data *data, uint8_t *padding_message)
+static void		modify_data(t_data *data, uint8_t *padding_message)
 {
 	uint32_t	*w;
 	uint32_t	i;
@@ -81,7 +81,8 @@ static void 	modify_data(t_data *data, uint8_t *padding_message)
 	data->b = data->h[1];
 	data->c = data->h[2];
 	data->d = data->h[3];
-	for(i = 0; i < 64; i++)
+	i = 0;
+	while (i < 64)
 	{
 		compute_data(data, i);
 		data->tmp[0] = data->d;
@@ -90,6 +91,7 @@ static void 	modify_data(t_data *data, uint8_t *padding_message)
 		data->b = data->b + \
 				LEFTROTATE((data->a + data->f + g_k[i] + w[data->g]), g_r[i]);
 		data->a = data->tmp[0];
+		++i;
 	}		
 	data->h[0] += data->a;
 	data->h[1] += data->b;
