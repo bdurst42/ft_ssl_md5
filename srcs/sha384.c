@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 00:29:51 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:10:05 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:14:27 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static uint64_t	make_padding_message(uint8_t **pad_msg, char *message)
 	msg_len = ft_strlen(message);
 	pad_msg_len = 128 * ((msg_len + 1) / 128 + 1);
 	if ((msg_len + 1) % 128 > 112)
-		pad_msg_len += 128; 
+		pad_msg_len += 128;
 	if (!(*pad_msg = ft_memalloc(pad_msg_len)))
 		ft_exiterror("Malloc failed", 1);
 	ft_memcpy(*pad_msg, message, msg_len);

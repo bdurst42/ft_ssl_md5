@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:11:55 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:09:42 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/05 13:14:39 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
 	message_len = ft_strlen(message);
 	padding_message_len = 64 * ((message_len + 1) / 64 + 1);
 	if ((message_len + 1) % 64 > 56)
-		padding_message_len += 64; 
+		padding_message_len += 64;
 	if (!(*padding_message = ft_memalloc(padding_message_len)))
 		ft_exiterror("Malloc failed", 1);
 	ft_memcpy(*padding_message, message, message_len);
@@ -49,7 +49,7 @@ static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
 	return (padding_message_len);
 }
 
-static void		compute_data(t_data *data, uint32_t i, uint32_t	*w)
+static void		compute_data(t_data *data, uint32_t i, uint32_t *w)
 {
 	data->s[1] = RROTATE(data->e, 6) ^ RROTATE(data->e, 11) \
 	^ RROTATE(data->e, 25);
