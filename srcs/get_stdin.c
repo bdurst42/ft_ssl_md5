@@ -6,13 +6,13 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 16:18:28 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 18:34:02 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 18:36:39 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-static char		*ft_concat_len(char const *s1, char const *s2, char *dst, \
+static char	*ft_concat_len(char const *s1, char const *s2, char *dst, \
 							__uint128_t *s_len)
 {
 	size_t	i;
