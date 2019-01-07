@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 16:18:28 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 14:56:22 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 18:34:02 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char		*ft_concat_len(char const *s1, char const *s2, char *dst, \
 	return (dst);
 }
 
-char		*ft_strjoin_len(char const *s1, char const *s2, __uint128_t s1_len,\
+char		*ft_strjoin_len(char const *s1, char const *s2, __uint128_t s1_len,
 						__uint128_t s2_len)
 {
 	char		*dst;
@@ -56,7 +56,6 @@ char		*ft_strjoin_len(char const *s1, char const *s2, __uint128_t s1_len,\
 	}
 	return (NULL);
 }
-
 
 char		*read_file(int fd_file, __uint128_t *len)
 {

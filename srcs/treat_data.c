@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 19:24:12 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 10:57:36 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 18:34:14 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		treat_data(t_env *env)
 		if (arg->type == TEXT)
 			env->len = ft_strlen(arg->content);
 		message = (arg->type != FILE_NAME) ? arg->content \
-											: open_file(arg->content, &env->len);
+										: open_file(arg->content, &env->len);
 		if (message)
 		{
 			encode_message = (env->algos[env->command].func32) \
