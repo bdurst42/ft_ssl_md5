@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 21:46:03 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:57:06 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 15:00:03 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	check_params(t_env *env, char **params, int nb_params)
 		return (1);
 	if (!env->command_args)
 		ft_node_push_back(&env->command_args, \
-			create_arg(STDIN_TEXT, read_file(0)));
+			create_arg(STDIN_TEXT, read_file(0, &env->len)));
 	return (0);
 }
 
@@ -29,10 +29,12 @@ static void	clear_arg(t_arg *arg)
 	free(arg);
 }
 
-static void	set_algo(t_algo *algo, char *name, char *(*func)(char*))
+static void	set_algo(t_algo *algo, char *name, char *(*func32)(char*, uint64_t),
+					char *(*func64)(char*, __uint128_t))
 {
 	algo->name = name;
-	algo->func = func;
+	algo->func32 = func32;
+	algo->func64 = func64;
 }
 
 int			main(int ac, char **av)
@@ -40,13 +42,13 @@ int			main(int ac, char **av)
 	t_env	env;
 
 	ft_bzero(&env, sizeof(env));
-	set_algo(&env.algos[0], "md5", md5);
-	set_algo(&env.algos[1], "sha256", sha256);
-	set_algo(&env.algos[2], "sha224", sha224);
-	set_algo(&env.algos[3], "sha512", sha512);
-	set_algo(&env.algos[4], "sha384", sha384);
-	set_algo(&env.algos[5], "sha512/256", sha512_256);
-	set_algo(&env.algos[6], "sha512/224", sha512_224);
+	set_algo(&env.algos[0], "md5", md5, NULL);
+	set_algo(&env.algos[1], "sha256", sha256, NULL);
+	set_algo(&env.algos[2], "sha224", sha224, NULL);
+	set_algo(&env.algos[3], "sha512", NULL, sha512);
+	set_algo(&env.algos[4], "sha384", NULL, sha384);
+	set_algo(&env.algos[5], "sha512/256", NULL, sha512_256);
+	set_algo(&env.algos[6], "sha512/224", NULL, sha512_224);
 	if (ac > 1 && !check_params(&env, av, ac))
 	{
 		treat_data(&env);

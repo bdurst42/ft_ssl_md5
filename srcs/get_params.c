@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:27 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 16:26:42 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/06 23:29:31 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		get_options(t_env *env, char c, char *string_arg, \
 				create_arg(STDIN_TEXT, ft_strdup("")));
 		else
 			ft_node_push_back(&env->command_args, \
-				create_arg(STDIN_TEXT, read_file(0)));
+				create_arg(STDIN_TEXT, read_file(0, &env->len)));
 		env->options.p = 1;
 	}
 	else if (c == 'q')

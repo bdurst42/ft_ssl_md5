@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 12:23:14 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:27:35 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 10:58:11 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ static uint32_t g_k[64] = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
 	0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f,
 	0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2};
 
-static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
+static uint32_t	make_padding_message(uint8_t **padding_message, char *message, \
+									uint64_t message_len)
 {
 	uint32_t	padding_message_len;
-	uint64_t	message_len;
 
-	message_len = ft_strlen(message);
 	padding_message_len = 64 * ((message_len + 1) / 64 + 1);
 	if ((message_len + 1) % 64 > 56)
 		padding_message_len += 64;
@@ -115,7 +114,7 @@ static void		get_encode_message(char **str, t_data data)
 	}
 }
 
-char			*sha256(char *message)
+char			*sha256(char *message, uint64_t msg_len)
 {
 	t_data		data;
 	uint32_t	padding_message_len;
@@ -131,7 +130,8 @@ char			*sha256(char *message)
 	data.h[5] = 0x9b05688c;
 	data.h[6] = 0x1f83d9ab;
 	data.h[7] = 0x5be0cd19;
-	padding_message_len = make_padding_message(&padding_message, message);
+	padding_message_len = make_padding_message(&padding_message, message, \
+		msg_len);
 	offset = 0;
 	while (offset < padding_message_len)
 	{

@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:02:05 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 00:04:40 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 14:28:41 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ enum				e_arg_type
 
 typedef struct		s_algo
 {
-	char			*(*func)(char*);
+	char			*(*func32)(char*, uint64_t);
+	char			*(*func64)(char*, __uint128_t);
 	char			*name;
 }					t_algo;
 
@@ -56,6 +57,7 @@ typedef struct		s_env
 	t_options		options;
 	t_list			*command_args;
 	t_algo			algos[NUMBER_OF_ALGOS];
+	__uint128_t		len;
 }					t_env;
 
 typedef struct		s_data
@@ -98,8 +100,8 @@ t_arg				*create_arg(enum e_arg_type type, char *content);
 
 void				treat_data(t_env *env);
 
-void				get_stdin(t_env *env);
-char				*read_file(int fd_file);
+void				get_stdin(t_env *env, __uint128_t *len);
+char				*read_file(int fd_file, __uint128_t *len);
 
 void				display_encode_message(t_env *env, t_arg *arg, \
 					char *encode_message);
@@ -107,7 +109,7 @@ void				display_encode_message(t_env *env, t_arg *arg, \
 void				fill_output_data(t_data *data);
 void				fill_working_variables(t_data *data);
 void				set_working_variables(t_data *data);
-void				add_msg_len(uint8_t **pad_msg, uint64_t pad_msg_len, \
+void				add_msg_len(uint8_t **pad_msg, __uint128_t pad_msg_len, \
 					__uint128_t msg_len);
 
 void				fill_output_data_64(t_data_64 *data);
@@ -117,18 +119,18 @@ void				set_working_variables_64(t_data_64 *data);
 uint32_t			uswap_32(unsigned int x);
 uint8_t				*revert_msg(uint8_t *pad_msg, uint64_t len);
 
-char				*md5(char *message);
+char				*md5(char *message, uint64_t msg_len);
 
-char				*sha256(char *message);
+char				*sha256(char *message, uint64_t msg_len);
 
-char				*sha224(char *message);
+char				*sha224(char *message, uint64_t msg_len);
 
-char				*sha512(char *message);
+char				*sha512(char *message, __uint128_t msg_len);
 
-char				*sha384(char *message);
+char				*sha384(char *message, __uint128_t msg_len);
 
-char				*sha512_256(char *message);
+char				*sha512_256(char *message, __uint128_t msg_len);
 
-char				*sha512_224(char *message);
+char				*sha512_224(char *message, __uint128_t msg_len);
 
 #endif

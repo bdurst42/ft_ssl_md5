@@ -6,14 +6,14 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 19:24:12 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:01:05 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 10:57:36 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include <fcntl.h>
 
-static char	*open_file(char *file_name)
+static char	*open_file(char *file_name, __uint128_t *len)
 {
 	int		fd_file;
 	char	*file_content;
@@ -24,27 +24,34 @@ static char	*open_file(char *file_name)
 		ft_putendl(": No such file or directory");
 		return (NULL);
 	}
-	file_content = read_file(fd_file);
+	file_content = read_file(fd_file, len);
 	close(fd_file);
 	return (file_content);
 }
 
 void		treat_data(t_env *env)
 {
-	t_list	*tmp;
-	t_arg	*arg;
-	char	*message;
+	t_list		*tmp;
+	t_arg		*arg;
+	char		*message;
+	char		*encode_message;
 
 	tmp = env->command_args;
 	while (tmp)
 	{
 		arg = (t_arg*)tmp->data;
+		if (arg->type == TEXT)
+			env->len = ft_strlen(arg->content);
 		message = (arg->type != FILE_NAME) ? arg->content \
-											: open_file(arg->content);
+											: open_file(arg->content, &env->len);
 		if (message)
 		{
+			encode_message = (env->algos[env->command].func32) \
+				? env->algos[env->command].func32(message, env->len) \
+				: env->algos[env->command].func64(message, env->len);
 			display_encode_message(env, arg, \
-				env->algos[env->command].func(message));
+				encode_message);
+			free(encode_message);
 			free(message);
 		}
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 10:52:21 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:32:16 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 14:52:45 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,20 @@ static uint64_t g_k[80] = {0x428a2f98d728ae22, 0x7137449123ef65cd,
 	0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c, 0x4cc5d4becb3e42b6,
 	0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817};
 
-static uint64_t	make_padding_message(uint8_t **pad_msg, char *message)
+static uint64_t	make_padding_message(uint8_t **pad_msg, char *message, \
+		__uint128_t msg_len)
 {
 	uint64_t	pad_msg_len;
-	__uint128_t	msg_len;
 
-	msg_len = ft_strlen(message);
 	pad_msg_len = 128 * ((msg_len + 1) / 128 + 1);
 	if ((msg_len + 1) % 128 > 112)
-		pad_msg_len += 128;
+	pad_msg_len += 128;
 	if (!(*pad_msg = ft_memalloc(pad_msg_len)))
-		ft_exiterror("Malloc failed", 1);
+	ft_exiterror("Malloc failed", 1);
 	ft_memcpy(*pad_msg, message, msg_len);
 	(*pad_msg)[msg_len] = 128;
-	*pad_msg = revert_msg(*pad_msg, msg_len + 1);
 	add_msg_len(pad_msg, pad_msg_len, msg_len);
+	*pad_msg = revert_msg(*pad_msg, msg_len + 1);
 	return (pad_msg_len);
 }
 
@@ -124,7 +123,7 @@ static void		get_encode_message(char **str, t_data_64 data)
 	}
 }
 
-char			*sha512_256(char *message)
+char			*sha512_256(char *message, __uint128_t msg_len)
 {
 	t_data_64	data;
 	uint64_t	pad_msg_len;
@@ -140,7 +139,7 @@ char			*sha512_256(char *message)
 	data.h[5] = 0xBE5E1E2553863992;
 	data.h[6] = 0x2B0199FC2C85B8AA;
 	data.h[7] = 0x0EB72DDC81C52CA2;
-	pad_msg_len = make_padding_message(&pad_msg, message);
+	pad_msg_len = make_padding_message(&pad_msg, message, msg_len);
 	offset = 0;
 	while (offset < pad_msg_len)
 	{

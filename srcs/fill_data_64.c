@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 18:44:40 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:56:31 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 14:51:41 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ void	set_working_variables_64(t_data_64 *data)
 	data->i = data->h[7];
 }
 
-void	add_msg_len(uint8_t **pad_msg, uint64_t pad_msg_len, \
-					__uint128_t msg_len)
+void	add_msg_len(uint8_t **pad_msg, __uint128_t pad_msg_len, \
+					__uint128_t len)
 {
-	msg_len *= 8;
-	(*pad_msg)[pad_msg_len - 1] = (msg_len & 0xFF) >> 56;
-	(*pad_msg)[pad_msg_len - 2] = (msg_len & 0x00FF) >> 48;
-	(*pad_msg)[pad_msg_len - 3] = (msg_len & 0x0000FF) >> 40;
-	(*pad_msg)[pad_msg_len - 4] = (msg_len & 0x000000FF) >> 32;
-	(*pad_msg)[pad_msg_len - 5] = (msg_len & 0x00000000FF) >> 24;
-	(*pad_msg)[pad_msg_len - 6] = (msg_len & 0x0000000000FF) >> 16;
-	(*pad_msg)[pad_msg_len - 7] = (msg_len & 0x000000000000FF) >> 8;
-	(*pad_msg)[pad_msg_len - 8] = (msg_len & 0x00000000000000FF);
-	(*pad_msg)[pad_msg_len - 9] = (msg_len >> 64 & 0xFF) >> 56;
-	(*pad_msg)[pad_msg_len - 10] = (msg_len >> 64 & 0x00FF) >> 48;
-	(*pad_msg)[pad_msg_len - 11] = (msg_len >> 64 & 0x0000FF) >> 40;
-	(*pad_msg)[pad_msg_len - 12] = (msg_len >> 64 & 0x000000FF) >> 32;
-	(*pad_msg)[pad_msg_len - 13] = (msg_len >> 64 & 0x00000000FF) >> 24;
-	(*pad_msg)[pad_msg_len - 14] = (msg_len >> 64 & 0x0000000000FF) >> 16;
-	(*pad_msg)[pad_msg_len - 15] = (msg_len >> 64 & 0x000000000000FF) >> 8;
-	(*pad_msg)[pad_msg_len - 16] = (msg_len >> 64 & 0x00000000000000FF);
+	len *= 8;
+	(*pad_msg)[pad_msg_len - 1] = (len & 0xFF00000000000000) >> 56;
+	(*pad_msg)[pad_msg_len - 2] = (len & 0xFF000000000000) >> 48;
+	(*pad_msg)[pad_msg_len - 3] = (len & 0xFF0000000000) >> 40;
+	(*pad_msg)[pad_msg_len - 4] = (len & 0xFF00000000) >> 32;
+	(*pad_msg)[pad_msg_len - 5] = (len & 0xFF000000) >> 24;
+	(*pad_msg)[pad_msg_len - 6] = (len & 0xFF0000) >> 16;
+	(*pad_msg)[pad_msg_len - 7] = (len & 0xFF00) >> 8;
+	(*pad_msg)[pad_msg_len - 8] = (len & 0xFF);
+	(*pad_msg)[pad_msg_len - 9] = (len >> 64 & 0xFF00000000000000) >> 56;
+	(*pad_msg)[pad_msg_len - 10] = (len >> 64 & 0xFF000000000000) >> 48;
+	(*pad_msg)[pad_msg_len - 11] = (len >> 64 & 0xFF0000000000) >> 40;
+	(*pad_msg)[pad_msg_len - 12] = (len >> 64 & 0xFF00000000) >> 32;
+	(*pad_msg)[pad_msg_len - 13] = (len >> 64 & 0xFF000000) >> 24;
+	(*pad_msg)[pad_msg_len - 14] = (len >> 64 & 0xFF0000) >> 16;
+	(*pad_msg)[pad_msg_len - 15] = (len >> 64 & 0xFF00) >> 8;
+	(*pad_msg)[pad_msg_len - 16] = (len >> 64 & 0xFF);
 }

@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 22:26:39 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 12:56:18 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/06 23:19:34 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,4 @@ void		display_encode_message(t_env *env, t_arg *arg, char *encode_message)
 	if (!env->options.q && env->options.r && arg->type != STDIN_TEXT)
 		reverse_display(arg);
 	ft_putchar('\n');
-	free(encode_message);
 }

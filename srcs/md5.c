@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:38 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/05 13:24:06 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/07 12:00:56 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ static uint32_t g_k[64] = {0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 	0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391};
 
-static uint32_t	make_padding_message(uint8_t **padding_message, char *message)
+static uint32_t	make_padding_message(uint8_t **padding_message, char *message, \
+									uint64_t message_len)
 {
 	uint32_t	padding_message_len;
-	uint64_t	message_len;
 
-	message_len = ft_strlen(message);
 	padding_message_len = 64 * ((message_len + 1) / 64 + 1);
 	if ((message_len + 1) % 64 > 56)
 		padding_message_len += 64;
@@ -130,7 +129,7 @@ static void		get_encode_message(char **str, t_data data)
 	}
 }
 
-char			*md5(char *message)
+char			*md5(char *message, uint64_t msg_len)
 {
 	t_data		data;
 	uint32_t	padding_message_len;
@@ -142,7 +141,8 @@ char			*md5(char *message)
 	data.h[1] = 0xEFCDAB89;
 	data.h[2] = 0x98BADCFE;
 	data.h[3] = 0x10325476;
-	padding_message_len = make_padding_message(&padding_message, message);
+	padding_message_len = make_padding_message(&padding_message, message, \
+		msg_len);
 	offset = 0;
 	while (offset < padding_message_len)
 	{
