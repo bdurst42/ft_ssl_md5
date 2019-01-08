@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:27 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/08 17:47:54 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 18:30:08 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,7 @@ int				get_options_and_args(t_env *env, char **p)
 			i += jump_next;
 		}
 		else
-		{
-			end_opt = 1;
-			ft_node_push_back(&env->command_args, create_arg(FILE_NAME, p[i], \
-			env->options));
-		}
+			last_func(env, p[i], &end_opt);
 	}
 	return (i);
 }

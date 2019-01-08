@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:02:05 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/08 17:45:47 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 18:30:19 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void				set_working_variables_64(t_data_64 *data);
 
 uint32_t			uswap_32(unsigned int x);
 uint8_t				*revert_msg(uint8_t *pad_msg, uint64_t len);
+void				last_func(t_env *env, char *param, char	*end_opt);
 
 char				*md5(char *message, uint64_t msg_len);
 
