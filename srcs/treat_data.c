@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 19:24:12 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 18:34:14 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 16:54:55 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void		treat_data(t_env *env)
 				: env->algos[env->command].func64(message, env->len);
 			display_encode_message(env, arg, \
 				encode_message);
+			(arg->type != TEXT) ? free(message) : NULL;
 			free(encode_message);
-			free(message);
 		}
 		tmp = tmp->next;
 	}
