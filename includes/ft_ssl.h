@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:02:05 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 14:28:41 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 17:45:47 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_arg
 {
 	enum e_arg_type	type;
 	char			*content;
+	t_options		options;
 }					t_arg;
 
 typedef struct		s_env
@@ -96,7 +97,8 @@ typedef struct		s_data_64
 
 char				get_command(t_env *env, char *command);
 int					get_options_and_args(t_env *env, char **params);
-t_arg				*create_arg(enum e_arg_type type, char *content);
+t_arg				*create_arg(enum e_arg_type type, char *content, \
+					t_options options);
 
 void				treat_data(t_env *env);
 

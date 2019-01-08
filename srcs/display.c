@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 22:26:39 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/06 23:19:34 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 18:06:27 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void		display_encode_message(t_env *env, t_arg *arg, char *encode_message)
 		ft_putstr(arg->content);
 	else if (arg->type == TEXT && !arg->content)
 		ft_exiterror("Option requires an argument -- s", 1);
-	if (!env->options.q && !env->options.r && arg->type != STDIN_TEXT)
+	if (arg->type != STDIN_TEXT && !arg->options.q && !arg->options.r)
 		regular_display(arg, env->algos[env->command].name);
 	ft_putstr(encode_message);
-	if (!env->options.q && env->options.r && arg->type != STDIN_TEXT)
+	if (arg->type != STDIN_TEXT && !arg->options.q && arg->options.r)
 		reverse_display(arg);
 	ft_putchar('\n');
 }

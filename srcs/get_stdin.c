@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 16:18:28 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 18:36:39 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 17:46:46 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ char		*read_file(int fd_file, __uint128_t *len)
 void		get_stdin(t_env *env, __uint128_t *len)
 {
 	ft_node_push_front(&env->command_args, \
-			create_arg(STDIN_TEXT, read_file(0, len)));
+			create_arg(STDIN_TEXT, read_file(0, len), env->options));
 }

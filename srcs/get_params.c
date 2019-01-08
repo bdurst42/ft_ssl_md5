@@ -6,13 +6,14 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 13:21:27 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/06 23:29:31 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 17:47:54 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-t_arg			*create_arg(enum e_arg_type type, char *content)
+t_arg			*create_arg(enum e_arg_type type, char *content, \
+							t_options options)
 {
 	t_arg	*new_arg;
 
@@ -20,13 +21,15 @@ t_arg			*create_arg(enum e_arg_type type, char *content)
 		ft_exiterror("Malloc failed", 1);
 	new_arg->type = type;
 	new_arg->content = content;
+	new_arg->options = options;
 	return (new_arg);
 }
 
 static char		manage_s_op(t_env *env, char *string_arg)
 {
 	env->options.s = 1;
-	ft_node_push_back(&env->command_args, create_arg(TEXT, string_arg));
+	ft_node_push_back(&env->command_args, create_arg(TEXT, string_arg, \
+		env->options));
 	return (1);
 }
 
@@ -37,10 +40,10 @@ static char		get_options(t_env *env, char c, char *string_arg, \
 	{
 		if (env->options.p)
 			ft_node_push_back(&env->command_args, \
-				create_arg(STDIN_TEXT, ft_strdup("")));
+				create_arg(STDIN_TEXT, ft_strdup(""), env->options));
 		else
 			ft_node_push_back(&env->command_args, \
-				create_arg(STDIN_TEXT, read_file(0, &env->len)));
+				create_arg(STDIN_TEXT, read_file(0, &env->len), env->options));
 		env->options.p = 1;
 	}
 	else if (c == 'q')
@@ -82,7 +85,8 @@ int				get_options_and_args(t_env *env, char **p)
 		else
 		{
 			end_opt = 1;
-			ft_node_push_back(&env->command_args, create_arg(FILE_NAME, p[i]));
+			ft_node_push_back(&env->command_args, create_arg(FILE_NAME, p[i], \
+			env->options));
 		}
 	}
 	return (i);

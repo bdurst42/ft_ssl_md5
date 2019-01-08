@@ -6,7 +6,7 @@
 /*   By: bdurst2812 <bdurst2812@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 21:46:03 by bdurst2812        #+#    #+#             */
-/*   Updated: 2019/01/07 15:00:03 by bdurst2812       ###   ########.fr       */
+/*   Updated: 2019/01/08 17:47:05 by bdurst2812       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	check_params(t_env *env, char **params, int nb_params)
 		return (1);
 	if (!env->command_args)
 		ft_node_push_back(&env->command_args, \
-			create_arg(STDIN_TEXT, read_file(0, &env->len)));
+			create_arg(STDIN_TEXT, read_file(0, &env->len), env->options));
 	return (0);
 }
 
